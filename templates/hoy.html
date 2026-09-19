@@ -1,1 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Organa · Hoy</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <div class="brand">
+            ◇ Organa
+        </div>
+
+        <nav>
+            <a class="active" href="/">Hoy</a>
+            <a href="/horizonte">Horizonte</a>
+            <a href="/frentes">Frentes</a>
+        </nav>
+
+    </header>
+
+
+    <h1>
+        Buen día, Christian
+    </h1>
+
+    <div class="subtitle">
+        {{ date_text }}
+    </div>
+
+
+    <div class="control">
+
+        <strong>
+            Tu carga está bajo control.
+        </strong>
+
+        Organa distingue entre lo que merece movimiento
+        y aquello que puede permanecer fuera de tu atención.
+
+    </div>
+
+
+    <div class="summary">
+
+        <div class="summary-card">
+
+            <div
+                class="summary-number"
+                style="color:#b54708"
+            >
+                {{ attention_count }}
+            </div>
+
+            <div class="summary-label">
+                frentes sugieren movimiento
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div
+                class="summary-number"
+                style="color:#175cd3"
+            >
+                {{ controlled_count }}
+            </div>
+
+            <div class="summary-label">
+                frentes pueden permanecer cerrados
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="focus-header">
+
+        <h2 class="section-title">
+            Dónde poner energía
+        </h2>
+
+        <span class="section-note">
+            Sólo lo que merece estar abierto ahora
+        </span>
+
+    </div>
+
+
+    {% if attention_fronts %}
+
+        {% for item in attention_fronts %}
+
+        <details class="front">
+
+            <summary>
+
+                <span
+                    class="dot"
+                    style="background:{{ item.color }}"
+                ></span>
+
+
+                <div>
+
+                    <div class="front-title">
+                        {{ item.front.name }}
+                    </div>
+
+                    <div class="front-reason">
+                        {{ item.reason }}
+                    </div>
+
+                </div>
+
+
+                <div class="area">
+                    {{ item.front.area }}
+                </div>
+
+
+                <span
+                    class="badge"
+                    style="
+                        color:{{ item.color }};
+                        background:{{ item.background }};
+                    "
+                >
+                    {{ item.label|upper }}
+                </span>
+
+
+                <span class="arrow">
+                    ⌄
+                </span>
+
+            </summary>
+
+
+            <div class="detail">
+
+                <div>
+
+                    <div class="eyebrow">
+                        PRÓXIMA ACCIÓN
+                    </div>
+
+                    <div class="next-action">
+                        {{ item.front.next_action or "Sin próxima acción definida." }}
+                    </div>
+
+
+                    <div class="steps">
+
+                        {% if item.front.steps %}
+
+                            {% for step in item.front.steps %}
+
+                            <div class="step {% if step.completed %}done{% endif %}">
+
+                                <span>
+                                    {% if step.completed %}✓{% else %}○{% endif %}
+                                </span>
+
+                                <span>
+                                    {{ step.title }}
+                                </span>
+
+                            </div>
+
+                            {% endfor %}
+
+                        {% else %}
+
+                            <div class="step">
+                                No hay pasos definidos todavía.
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="facts">
+
+                    <div class="fact">
+                        <span>Hito / deadline</span>
+                        <strong>{{ item.deadline_text }}</strong>
+                    </div>
+
+                    <div class="fact">
+                        <span>Trabajo restante</span>
+                        <strong>{{ item.hours_text }}</strong>
+                    </div>
+
+                    <div class="fact">
+                        <span>Sesión sugerida</span>
+                        <strong>{{ item.session_text }}</strong>
+                    </div>
+
+                    <div class="fact">
+                        <span>Avance</span>
+                        <strong>{{ item.front.progress }}%</strong>
+                    </div>
+
+                    <div class="fact">
+                        <span>Presión actual</span>
+                        <strong>{{ item.pressure }}/100</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </details>
+
+        {% endfor %}
+
+
+    {% else %}
+
+        <div class="empty">
+            No hay frentes que necesiten movimiento ahora.
+        </div>
+
+    {% endif %}
+
+
+    <div class="covered">
+
+        <strong>
+            {{ controlled_count }} frentes permanecen bajo control.
+        </strong>
+
+        No requieren tu atención ahora.
+        Organa los mantiene vigilados y los volverá a abrir
+        cuando corresponda.
+
+    </div>
+
+
+    <div class="footer">
+        No necesitas mantener todo en la cabeza.
+    </div>
+
+</div>
+
+</body>
+
+</html>
