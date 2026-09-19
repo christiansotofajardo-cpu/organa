@@ -1,0 +1,248 @@
+[
+  {
+    "id": "ungm-visualization",
+    "name": "UNGM · Visualization",
+    "area": "Internacional",
+    "description": "Preparación de propuesta para oportunidad internacional.",
+    "status": "active",
+    "importance": 5,
+    "start_date": "2026-09-17",
+    "deadline": "2026-09-30",
+    "next_review": "2026-09-20",
+    "last_touched": "2026-09-19",
+    "progress": 40,
+    "estimated_hours_total": 12,
+    "estimated_hours_remaining": 7,
+    "next_action": "Completar estructura de la propuesta técnica.",
+    "suggested_session_minutes": 120,
+    "steps": [
+      {
+        "title": "Revisar antecedentes disponibles",
+        "completed": true
+      },
+      {
+        "title": "Definir estructura de la propuesta",
+        "completed": false
+      },
+      {
+        "title": "Completar propuesta técnica",
+        "completed": false
+      },
+      {
+        "title": "Preparar componentes administrativos",
+        "completed": false
+      },
+      {
+        "title": "Revisión final y envío",
+        "completed": false
+      }
+    ],
+    "milestones": [
+      {
+        "title": "Propuesta estructurada",
+        "date": "2026-09-23",
+        "completed": false
+      },
+      {
+        "title": "Envío",
+        "date": "2026-09-30",
+        "completed": false
+      }
+    ],
+    "notes": "Frente internacional actualmente activo.",
+    "links": []
+  },
+
+  {
+    "id": "paper-evalia",
+    "name": "Paper · Evalia",
+    "area": "Publicaciones",
+    "description": "Desarrollo del manuscrito científico asociado a Evalia.",
+    "status": "active",
+    "importance": 5,
+    "start_date": "2026-09-01",
+    "deadline": null,
+    "next_review": "2026-09-23",
+    "last_touched": "2026-09-13",
+    "progress": 30,
+    "estimated_hours_total": 30,
+    "estimated_hours_remaining": 20,
+    "next_action": "Retomar el manuscrito y definir el siguiente bloque de escritura.",
+    "suggested_session_minutes": 90,
+    "steps": [
+      {
+        "title": "Revisar estructura general",
+        "completed": true
+      },
+      {
+        "title": "Profundizar marco conceptual",
+        "completed": false
+      },
+      {
+        "title": "Fortalecer diseño metodológico",
+        "completed": false
+      },
+      {
+        "title": "Completar discusión",
+        "completed": false
+      }
+    ],
+    "milestones": [],
+    "notes": "Importante mantener continuidad aunque no exista presión inmediata.",
+    "links": []
+  },
+
+  {
+    "id": "tesis-parvularia-2026",
+    "name": "Tesis · Parvularia 2026",
+    "area": "Tesis",
+    "description": "Procesamiento y análisis del corpus oral de la tesis de Parvularia.",
+    "status": "active",
+    "importance": 4,
+    "start_date": "2026-09-15",
+    "deadline": null,
+    "next_review": "2026-09-24",
+    "last_touched": "2026-09-15",
+    "progress": 25,
+    "estimated_hours_total": 15,
+    "estimated_hours_remaining": 11,
+    "next_action": "Continuar procesamiento del corpus.",
+    "suggested_session_minutes": 60,
+    "steps": [
+      {
+        "title": "Organizar corpus",
+        "completed": true
+      },
+      {
+        "title": "Procesar corpus oral",
+        "completed": false
+      },
+      {
+        "title": "Consolidar resultados",
+        "completed": false
+      },
+      {
+        "title": "Interpretar resultados",
+        "completed": false
+      }
+    ],
+    "milestones": [],
+    "notes": "Mantener avance progresivo sin transformarlo prematuramente en urgencia.",
+    "links": []
+  },
+
+  {
+    "id": "evalia-core",
+    "name": "Evalia Core",
+    "area": "Tecnología",
+    "description": "Desarrollo del motor semántico transversal reutilizable.",
+    "status": "active",
+    "importance": 5,
+    "start_date": "2026-09-08",
+    "deadline": null,
+    "next_review": "2026-09-25",
+    "last_touched": "2026-09-19",
+    "progress": 35,
+    "estimated_hours_total": 40,
+    "estimated_hours_remaining": 26,
+    "next_action": "Continuar modularización del motor semántico.",
+    "suggested_session_minutes": 90,
+    "steps": [
+      {
+        "title": "Separar representación semántica",
+        "completed": true
+      },
+      {
+        "title": "Consolidar matcher semántico",
+        "completed": false
+      },
+      {
+        "title": "Separar lógica específica de evaluación",
+        "completed": false
+      },
+      {
+        "title": "Preparar API reutilizable",
+        "completed": false
+      }
+    ],
+    "milestones": [],
+    "notes": "Desarrollo estratégico de largo plazo. No convertir automáticamente en urgencia.",
+    "links": []
+  },
+
+  {
+    "id": "metrogas",
+    "name": "MetroGas",
+    "area": "Consultorías",
+    "description": "RFI de evaluación y monitoreo de riesgos de proveedores.",
+    "status": "waiting",
+    "importance": 4,
+    "start_date": "2026-09-10",
+    "deadline": null,
+    "next_review": "2026-09-28",
+    "last_touched": "2026-09-14",
+    "progress": 100,
+    "estimated_hours_total": 10,
+    "estimated_hours_remaining": 0,
+    "next_action": "Revisar si existe respuesta o avance del proceso.",
+    "suggested_session_minutes": 10,
+    "steps": [
+      {
+        "title": "Preparar propuesta",
+        "completed": true
+      },
+      {
+        "title": "Definir oferta económica",
+        "completed": true
+      },
+      {
+        "title": "Enviar propuesta",
+        "completed": true
+      }
+    ],
+    "milestones": [
+      {
+        "title": "Oferta enviada",
+        "date": "2026-09-14",
+        "completed": true
+      }
+    ],
+    "notes": "No requiere atención antes de la próxima revisión.",
+    "links": []
+  },
+
+  {
+    "id": "spencer-2027",
+    "name": "Spencer 2027",
+    "area": "Fondos",
+    "description": "Preparación estratégica de futura propuesta internacional.",
+    "status": "sleeping",
+    "importance": 5,
+    "start_date": null,
+    "deadline": null,
+    "next_review": "2026-10-28",
+    "last_touched": "2026-09-18",
+    "progress": 5,
+    "estimated_hours_total": null,
+    "estimated_hours_remaining": null,
+    "next_action": "Retomar diseño del consorcio y revisar próxima convocatoria.",
+    "suggested_session_minutes": 60,
+    "steps": [
+      {
+        "title": "Reactivar planificación",
+        "completed": false
+      },
+      {
+        "title": "Revisar convocatoria",
+        "completed": false
+      },
+      {
+        "title": "Definir socios potenciales",
+        "completed": false
+      }
+    ],
+    "milestones": [],
+    "notes": "Frente deliberadamente dormido. No requiere vigilancia cognitiva hasta fines de octubre.",
+    "links": []
+  }
+]
