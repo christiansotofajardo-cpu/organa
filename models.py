@@ -1,76 +1,93 @@
-from datetime import date
 from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
-class Step(BaseModel):
-    """
-    Una acción concreta dentro de un frente.
-    Ejemplo: revisar bases, preparar presupuesto, enviar propuesta.
-    """
-    title: str
-    completed: bool = False
-
-
 class Milestone(BaseModel):
     """
-    Un hito relevante dentro del frente.
-    Puede ser un deadline, entrega, revisión, resultado esperado, etc.
+    Hito relevante dentro de un frente.
+
+    Puede representar una fecha límite, una entrega,
+    una postulación, un resultado esperado, una reunión
+    u otro momento que Organa deba mantener vigilado.
     """
+
     title: str
-    date: Optional[date] = None
+    date: Optional[str] = None
+    kind: str = "milestone"
     completed: bool = False
+
+
+class NextStep(BaseModel):
+    """
+    Acción concreta asociada a un frente.
+
+    La idea es que cada frente pueda desplegarse
+    y mostrar qué hay que hacer realmente.
+    """
+
+    title: str
+    completed: bool = False
+    estimated_minutes: Optional[int] = None
 
 
 class Front(BaseModel):
     """
-    Unidad básica de trabajo de Organa.
+    Unidad central de Organa.
 
-    Un frente puede ser:
-    - un paper
-    - una licitación
-    - un proyecto
-    - una tesis
-    - una clase
-    - una tecnología
-    - una prueba o trabajo escolar
-    - cualquier compromiso que evolucione en el tiempo
+    Un Front representa algo que ocupa o podría ocupar
+    atención: proyecto, paper, tesis, clase, licitación,
+    desarrollo tecnológico, actividad personal, etc.
+
+    Organa no pretende mostrar todo permanentemente.
+    El regulador decide qué merece estar abierto ahora
+    y qué puede permanecer bajo vigilancia.
     """
 
-    # IDENTIDAD
     id: str
-    name: str
-    area: str
+    title: str
+
+    # Clasificación general
+    category: str = "general"
     description: Optional[str] = None
 
-    # ESTADO GENERAL
+    # Estado del frente
     status: str = "active"
+
+    # Importancia estratégica
     importance: int = Field(default=3, ge=1, le=5)
 
-    # TIEMPO
-    start_date: Optional[date] = None
-    deadline: Optional[date] = None
-    next_review: Optional[date] = None
-    last_touched: Optional[date] = None
+    # Presión subjetiva o externa
+    pressure: int = Field(default=1, ge=0, le=5)
 
-    # CARGA Y AVANCE
-    progress: int = Field(default=0, ge=0, le=100)
-    estimated_hours_total: Optional[float] = None
-    estimated_hours_remaining: Optional[float] = None
+    # Energía necesaria para trabajar en él
+    energy_required: int = Field(default=2, ge=1, le=5)
 
-    # ACCIÓN
-    next_action: Optional[str] = None
-    suggested_session_minutes: Optional[int] = None
+    # Tiempo estimado de una sesión útil
+    suggested_session_minutes: int = Field(default=30, ge=5)
 
-    # DESPLIEGUE DEL FRENTE
-    steps: List[Step] = Field(default_factory=list)
+    # Fechas principales
+    deadline: Optional[str] = None
+    start_date: Optional[str] = None
+
+    # Última vez que hubo movimiento
+    last_touched: Optional[str] = None
+
+    # Momento recomendado para volver a abrirlo
+    reopen_date: Optional[str] = None
+
+    # Permite distinguir cosas que simplemente
+    # deben permanecer vigiladas
+    waiting: bool = False
+    sleeping: bool = False
+
+    # Hitos internos
     milestones: List[Milestone] = Field(default_factory=list)
 
-    # MEMORIA EXTERNA
-    notes: Optional[str] = None
-    links: List[str] = Field(default_factory=list)
+    # Próximas acciones concretas
+    next_steps: List[NextStep] = Field(default_factory=list)
 
-    # ESTADO REGULATORIO
-    # Más adelante regulator.py calculará estos campos.
-    attention_state: Optional[str] = None
-    attention_reason: Optional[str] = None
+    # Información libre para el futuro motor semántico
+    notes: Optional[str] = None
+
+    # Etiquetas flexibles
+    tags: List[str] = Field(default_factory=list)
