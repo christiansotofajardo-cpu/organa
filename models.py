@@ -1,93 +1,194 @@
+from datetime import date
 from typing import List, Optional
+
 from pydantic import BaseModel, Field
+
+
+# ============================================================
+# ORGANA · DATA MODELS
+# ============================================================
+
+
+class Step(BaseModel):
+    """
+    Paso concreto dentro de un frente.
+
+    Permite desplegar un frente y ver qué acciones
+    específicas contiene.
+    """
+
+    title: str
+    completed: bool = False
 
 
 class Milestone(BaseModel):
     """
-    Hito relevante dentro de un frente.
+    Hito temporal relevante dentro de un frente.
 
-    Puede representar una fecha límite, una entrega,
-    una postulación, un resultado esperado, una reunión
-    u otro momento que Organa deba mantener vigilado.
+    Ejemplos:
+    - fecha de postulación
+    - entrega
+    - reunión
+    - resultado esperado
+    - revisión
     """
 
     title: str
-    date: Optional[str] = None
-    kind: str = "milestone"
+
+    # IMPORTANTE:
+    # Debe aceptar fechas reales del JSON como:
+    # "2026-09-23"
+    #
+    # Pydantic convierte automáticamente ese string
+    # ISO a datetime.date.
+    date: Optional[date] = None
+
     completed: bool = False
-
-
-class NextStep(BaseModel):
-    """
-    Acción concreta asociada a un frente.
-
-    La idea es que cada frente pueda desplegarse
-    y mostrar qué hay que hacer realmente.
-    """
-
-    title: str
-    completed: bool = False
-    estimated_minutes: Optional[int] = None
 
 
 class Front(BaseModel):
     """
     Unidad central de Organa.
 
-    Un Front representa algo que ocupa o podría ocupar
-    atención: proyecto, paper, tesis, clase, licitación,
-    desarrollo tecnológico, actividad personal, etc.
+    Un frente representa cualquier asunto que debe
+    mantenerse organizado sin necesidad de mantenerlo
+    permanentemente en la memoria operativa.
 
-    Organa no pretende mostrar todo permanentemente.
-    El regulador decide qué merece estar abierto ahora
-    y qué puede permanecer bajo vigilancia.
+    Puede ser:
+    - proyecto
+    - licitación
+    - paper
+    - tecnología
+    - tesis
+    - docencia
+    - consultoría
+    - actividad personal
+    - oportunidad futura
     """
 
-    id: str
-    title: str
+    # --------------------------------------------------------
+    # IDENTIDAD
+    # --------------------------------------------------------
 
-    # Clasificación general
-    category: str = "general"
+    id: str
+
+    name: str
+
+    area: str = "General"
+
     description: Optional[str] = None
 
-    # Estado del frente
+
+    # --------------------------------------------------------
+    # ESTADO
+    # --------------------------------------------------------
+
+    # Valores esperados, por ejemplo:
+    #
+    # active
+    # waiting
+    # sleeping
+    # closed
+
     status: str = "active"
 
-    # Importancia estratégica
-    importance: int = Field(default=3, ge=1, le=5)
 
-    # Presión subjetiva o externa
-    pressure: int = Field(default=1, ge=0, le=5)
+    # --------------------------------------------------------
+    # IMPORTANCIA
+    # --------------------------------------------------------
 
-    # Energía necesaria para trabajar en él
-    energy_required: int = Field(default=2, ge=1, le=5)
+    importance: int = Field(
+        default=3,
+        ge=1,
+        le=5
+    )
 
-    # Tiempo estimado de una sesión útil
-    suggested_session_minutes: int = Field(default=30, ge=5)
 
-    # Fechas principales
-    deadline: Optional[str] = None
-    start_date: Optional[str] = None
+    # --------------------------------------------------------
+    # PROGRESO
+    # --------------------------------------------------------
 
-    # Última vez que hubo movimiento
-    last_touched: Optional[str] = None
+    progress: int = Field(
+        default=0,
+        ge=0,
+        le=100
+    )
 
-    # Momento recomendado para volver a abrirlo
-    reopen_date: Optional[str] = None
 
-    # Permite distinguir cosas que simplemente
-    # deben permanecer vigiladas
-    waiting: bool = False
-    sleeping: bool = False
+    # --------------------------------------------------------
+    # CARGA ESTIMADA
+    # --------------------------------------------------------
 
-    # Hitos internos
-    milestones: List[Milestone] = Field(default_factory=list)
+    estimated_hours_remaining: Optional[float] = Field(
+        default=None,
+        ge=0
+    )
 
-    # Próximas acciones concretas
-    next_steps: List[NextStep] = Field(default_factory=list)
+    suggested_session_minutes: Optional[int] = Field(
+        default=None,
+        ge=5
+    )
 
-    # Información libre para el futuro motor semántico
+
+    # --------------------------------------------------------
+    # FECHAS
+    # --------------------------------------------------------
+
+    deadline: Optional[date] = None
+
+    next_review: Optional[date] = None
+
+    start_date: Optional[date] = None
+
+    last_touched: Optional[date] = None
+
+
+    # --------------------------------------------------------
+    # ACCIÓN
+    # --------------------------------------------------------
+
+    next_action: Optional[str] = None
+
+    steps: List[Step] = Field(
+        default_factory=list
+    )
+
+
+    # --------------------------------------------------------
+    # HITOS
+    # --------------------------------------------------------
+
+    milestones: List[Milestone] = Field(
+        default_factory=list
+    )
+
+
+    # --------------------------------------------------------
+    # REGULACIÓN
+    # --------------------------------------------------------
+
+    # Estos campos permiten guardar eventualmente
+    # una decisión regulatoria explícita.
+    #
+    # El regulator.py puede calcularla dinámicamente,
+    # pero mantenemos estos campos porque forman parte
+    # del modelo original de Organa.
+
+    attention_state: Optional[str] = None
+
+    attention_reason: Optional[str] = None
+
+
+    # --------------------------------------------------------
+    # INFORMACIÓN COMPLEMENTARIA
+    # --------------------------------------------------------
+
     notes: Optional[str] = None
 
-    # Etiquetas flexibles
-    tags: List[str] = Field(default_factory=list)
+    links: List[str] = Field(
+        default_factory=list
+    )
+
+    tags: List[str] = Field(
+        default_factory=list
+    )
