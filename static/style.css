@@ -1,1 +1,577 @@
-/* Organa - estilos globales */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #173a75;
+    --text: #10213f;
+    --muted: #667085;
+    --soft-muted: #98a2b3;
+    --background: #f6f8fc;
+    --white: #ffffff;
+    --line: #eef1f5;
+
+    --red: #d92d20;
+    --red-bg: #fdecec;
+
+    --orange: #b54708;
+    --orange-bg: #fff0df;
+
+    --yellow: #8a6500;
+    --yellow-bg: #fff8d8;
+
+    --green: #23734a;
+    --green-bg: #eaf7ef;
+
+    --blue: #175cd3;
+    --blue-bg: #eaf2ff;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+.container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 32px 30px 70px;
+}
+
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 52px;
+}
+
+.brand {
+    color: var(--navy);
+    font-size: 23px;
+    font-weight: 750;
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 600;
+    padding: 9px 15px;
+    border-radius: 10px;
+}
+
+nav a:hover {
+    background: rgba(255,255,255,.7);
+}
+
+nav a.active {
+    background: var(--white);
+    color: var(--navy);
+    box-shadow: 0 2px 10px rgba(20,40,80,.06);
+}
+
+
+/* ==========================================================
+   TYPOGRAPHY
+   ========================================================== */
+
+h1 {
+    margin: 0 0 6px;
+    font-size: 40px;
+    letter-spacing: -0.7px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 22px;
+}
+
+.section-note {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   CONTROL MESSAGE
+   ========================================================== */
+
+.control {
+    margin-top: 27px;
+    padding: 23px 27px;
+    background: var(--green-bg);
+    border-radius: 17px;
+}
+
+.control strong {
+    display: block;
+    color: var(--green);
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+
+/* ==========================================================
+   SUMMARY
+   ========================================================== */
+
+.summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.summary-card {
+    background: var(--white);
+    padding: 20px 22px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(20,40,80,.04);
+}
+
+.summary-number {
+    font-size: 30px;
+    font-weight: 750;
+}
+
+.summary-label {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   SECTION HEADER
+   ========================================================== */
+
+.focus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-top: 42px;
+    margin-bottom: 14px;
+}
+
+
+/* ==========================================================
+   FRONT CARDS / ACCORDION
+   ========================================================== */
+
+.front {
+    background: var(--white);
+    border-radius: 16px;
+    margin-bottom: 11px;
+    box-shadow: 0 2px 12px rgba(20,40,80,.05);
+    overflow: hidden;
+}
+
+.front summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 12px 1fr auto auto 22px;
+    align-items: center;
+    gap: 14px;
+    padding: 19px 22px;
+}
+
+.front summary::-webkit-details-marker {
+    display: none;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.front-title {
+    font-size: 16px;
+    font-weight: 750;
+}
+
+.front-reason {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.area {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.badge {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.arrow {
+    font-size: 18px;
+    transition: transform .2s ease;
+}
+
+details[open] .arrow {
+    transform: rotate(180deg);
+}
+
+
+/* ==========================================================
+   FRONT DETAILS
+   ========================================================== */
+
+.detail {
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 35px;
+    padding: 22px 48px 28px;
+}
+
+.eyebrow {
+    color: var(--soft-muted);
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: .7px;
+    margin-bottom: 7px;
+}
+
+.next-action {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 17px;
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.step {
+    display: flex;
+    gap: 9px;
+    font-size: 13px;
+    color: #475467;
+}
+
+.step.done {
+    opacity: .5;
+}
+
+.facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+}
+
+.fact {
+    background: #f8fafc;
+    padding: 12px 14px;
+    border-radius: 11px;
+}
+
+.fact span {
+    display: block;
+    color: var(--soft-muted);
+    font-size: 10px;
+    margin-bottom: 4px;
+}
+
+.fact strong {
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   COGNITIVE CLOSURE
+   ========================================================== */
+
+.covered {
+    margin-top: 30px;
+    background: var(--blue-bg);
+    color: #1849a9;
+    border-radius: 16px;
+    padding: 20px 24px;
+}
+
+.covered strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 4px;
+}
+
+.empty {
+    background: var(--blue-bg);
+    color: #1849a9;
+    padding: 25px;
+    border-radius: 16px;
+}
+
+
+/* ==========================================================
+   HORIZON
+   ========================================================== */
+
+.time-selector {
+    display: flex;
+    gap: 8px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+}
+
+.time-selector span {
+    background: var(--white);
+    color: var(--muted);
+    font-weight: 650;
+    font-size: 13px;
+    padding: 9px 15px;
+    border-radius: 20px;
+}
+
+.time-selector span.active {
+    background: var(--navy);
+    color: var(--white);
+}
+
+.future {
+    background: #fff8e8;
+    padding: 20px 24px;
+    border-radius: 16px;
+    margin-bottom: 28px;
+}
+
+.future strong {
+    display: block;
+    color: var(--yellow);
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.future span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.horizon {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.horizon-row {
+    display: grid;
+    grid-template-columns: 1.45fr 1.7fr .55fr .65fr .7fr .65fr;
+    gap: 18px;
+    align-items: center;
+    background: var(--white);
+    padding: 17px 20px;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(20,40,80,.04);
+}
+
+.horizon-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.horizon-name strong {
+    display: block;
+    font-size: 14px;
+}
+
+.horizon-name span {
+    display: block;
+    color: var(--soft-muted);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.trajectory {
+    height: 9px;
+    background: var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.trajectory-bar {
+    height: 100%;
+    border-radius: 20px;
+}
+
+.mini span {
+    display: block;
+    color: var(--soft-muted);
+    font-size: 9px;
+    margin-bottom: 3px;
+}
+
+.mini strong {
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   ALL FRONTS
+   ========================================================== */
+
+.front-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 28px 0 20px;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter {
+    background: var(--white);
+    color: var(--muted);
+    padding: 8px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.filter.active {
+    background: var(--navy);
+    color: var(--white);
+}
+
+.total-fronts {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.front-group {
+    margin-top: 30px;
+}
+
+.front-group-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 11px;
+}
+
+.front-group-title h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.front-group-title span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   LEGEND
+   ========================================================== */
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 27px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+.footer {
+    margin-top: 45px;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 14px;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 850px) {
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .front summary {
+        grid-template-columns: 12px 1fr 22px;
+    }
+
+    .area,
+    .badge {
+        display: none;
+    }
+
+    .detail {
+        grid-template-columns: 1fr;
+        padding: 20px 25px;
+    }
+
+    .horizon-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .front-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
