@@ -1,1 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Organa · Horizonte</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <div class="brand">
+            ◇ Organa
+        </div>
+
+        <nav>
+            <a href="/">Hoy</a>
+            <a class="active" href="/horizonte">Horizonte</a>
+            <a href="/frentes">Frentes</a>
+        </nav>
+
+    </header>
+
+
+    <h1>
+        Horizonte
+    </h1>
+
+    <div class="subtitle">
+
+        Mira lo que viene sin convertir todo el futuro
+        en una preocupación presente.
+
+    </div>
+
+
+    <div class="time-selector">
+
+        <span class="active">
+            4 semanas
+        </span>
+
+        <span>
+            3 meses
+        </span>
+
+        <span>
+            6 meses
+        </span>
+
+    </div>
+
+
+    <div class="future">
+
+        <strong>
+            Organa vigila la carga futura.
+        </strong>
+
+        <span>
+
+            Los frentes pueden permanecer tranquilos mientras
+            su trayectoria siga siendo compatible con sus plazos
+            y trabajo pendiente.
+
+        </span>
+
+    </div>
+
+
+    <div class="horizon">
+
+        {% for item in fronts %}
+
+        <div class="horizon-row">
+
+            <div class="horizon-name">
+
+                <span
+                    class="dot"
+                    style="background:{{ item.color }}"
+                ></span>
+
+                <div>
+
+                    <strong>
+                        {{ item.front.name }}
+                    </strong>
+
+                    <span>
+                        {{ item.front.area }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="trajectory">
+
+                <div
+                    class="trajectory-bar"
+                    style="
+                        width:{{ item.visual_progress }}%;
+                        background:{{ item.color }};
+                    "
+                ></div>
+
+            </div>
+
+
+            <div class="mini">
+
+                <span>AVANCE</span>
+
+                <strong>
+                    {{ item.front.progress }}%
+                </strong>
+
+            </div>
+
+
+            <div class="mini">
+
+                <span>PENDIENTE</span>
+
+                <strong>
+                    {{ item.hours_text }}
+                </strong>
+
+            </div>
+
+
+            <div class="mini">
+
+                <span>DEADLINE</span>
+
+                <strong>
+                    {{ item.deadline_short }}
+                </strong>
+
+            </div>
+
+
+            <div class="mini">
+
+                <span>REVISAR</span>
+
+                <strong>
+                    {{ item.review_short }}
+                </strong>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="legend">
+
+        <div class="legend-item">
+            <span class="legend-dot" style="background:#d92d20"></span>
+            Requiere atención
+        </div>
+
+        <div class="legend-item">
+            <span class="legend-dot" style="background:#b54708"></span>
+            Atención próxima
+        </div>
+
+        <div class="legend-item">
+            <span class="legend-dot" style="background:#eaaa08"></span>
+            Conviene avanzar
+        </div>
+
+        <div class="legend-item">
+            <span class="legend-dot" style="background:#32a060"></span>
+            Trayectoria adecuada
+        </div>
+
+        <div class="legend-item">
+            <span class="legend-dot" style="background:#2e70d1"></span>
+            Bajo control
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        Ver el futuro no significa cargarlo hoy.
+    </div>
+
+</div>
+
+</body>
+
+</html>
